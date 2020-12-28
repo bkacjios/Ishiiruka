@@ -142,4 +142,10 @@ extern const Info<bool> MAIN_SKIP_NKIT_WARNING;
 extern const Info<std::string> MAIN_ANALYTICS_ID;
 extern const Info<bool> MAIN_ANALYTICS_ENABLED;
 extern const Info<bool> MAIN_ANALYTICS_PERMISSION_ASKED;
+
+// Main.Slippi
+extern const Info<bool> MAIN_SLIPPI_SAVE_REPLAYS;
+extern const Info<bool> MAIN_SLIPPI_REPLAYS_MONTLY_SUBFOLDERS;
+extern const Info<std::string> MAIN_SLIPPI_REPLAYS_PATH;
+extern const Info<int> MAIN_SLIPPI_DELAY_FRAMES;
 }  // namespace Config

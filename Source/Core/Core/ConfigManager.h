@@ -72,6 +72,13 @@ enum MeleeLagReductionCode
   MELEE_LAG_REDUCTION_CODE_PERFORMANCE = 2
 };
 
+enum GameType
+{
+  GAMETYPE_OTHER,
+  GAMETYPE_MELEE_NTSC,
+  GAMETYPE_MELEE_20XX
+};
+
 struct SConfig
 {
   // Wii Devices
@@ -146,6 +153,9 @@ struct SConfig
   bool m_meleeUserIniBootstrapped = false;
   bool m_blockingPipes = false;
   bool m_coutEnabled = false;
+  int m_slippiOnlineDelay = 2;
+
+  GameType m_gameType;
 
   bool bDPL2Decoder = false;
   int iLatency = 20;
@@ -366,6 +376,7 @@ private:
   void SaveUSBPassthroughSettings(IniFile& ini);
   void SaveAutoUpdateSettings(IniFile& ini);
   void SaveJitDebugSettings(IniFile& ini);
+  void SaveSlippiSettings(IniFile& ini);
 
   void LoadGeneralSettings(IniFile& ini);
   void LoadInterfaceSettings(IniFile& ini);
@@ -379,6 +390,7 @@ private:
   void LoadUSBPassthroughSettings(IniFile& ini);
   void LoadAutoUpdateSettings(IniFile& ini);
   void LoadJitDebugSettings(IniFile& ini);
+  void LoadSlippiSettings(IniFile& ini);
 
   void SetRunningGameMetadata(const std::string& game_id, const std::string& gametdb_id,
                               u64 title_id, u16 revision, DiscIO::Region region);

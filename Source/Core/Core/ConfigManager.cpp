@@ -97,6 +97,7 @@ void SConfig::SaveSettings()
   SaveUSBPassthroughSettings(ini);
   SaveAutoUpdateSettings(ini);
   SaveJitDebugSettings(ini);
+  SaveSlippiSettings(ini);
 
   ini.Save(File::GetUserPath(F_DOLPHINCONFIG_IDX));
 
@@ -340,6 +341,16 @@ void SConfig::SaveJitDebugSettings(IniFile& ini)
   section->Set("JitRegisterCacheOff", bJITRegisterCacheOff);
 }
 
+void SConfig::SaveSlippiSettings(IniFile& ini)
+{
+  IniFile::Section* section = ini.GetOrCreateSection("Slippi");
+
+  section->Set("ReplayPath", m_strSlippiReplayDir);
+  section->Set("SaveReplays", m_slippiSaveReplays);
+  section->Set("ReplaysMonthlySubfolder", m_slippiReplayMonthFolders);
+  section->Set("DelayFrames", m_slippiOnlineDelay);
+}
+
 void SConfig::LoadSettings()
 {
   Config::Load();
@@ -360,6 +371,7 @@ void SConfig::LoadSettings()
   LoadUSBPassthroughSettings(ini);
   LoadAutoUpdateSettings(ini);
   LoadJitDebugSettings(ini);
+  LoadSlippiSettings(ini);
 }
 
 void SConfig::LoadGeneralSettings(IniFile& ini)
@@ -477,8 +489,8 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   core->Get("AudioStretchMaxLatency", &m_audio_stretch_max_latency, 80);
   core->Get("AgpCartAPath", &m_strGbaCartA);
   core->Get("AgpCartBPath", &m_strGbaCartB);
-  core->Get("SlotA", (int*)&m_EXIDevice[0], ExpansionInterface::EXIDEVICE_MEMORYCARDFOLDER);
-  core->Get("SlotB", (int*)&m_EXIDevice[1], ExpansionInterface::EXIDEVICE_NONE);
+  core->Get("SlotA", (int*)&m_EXIDevice[0], ExpansionInterface::EXIDEVICE_NONE);
+  core->Get("SlotB", (int*)&m_EXIDevice[1], ExpansionInterface::EXIDEVICE_SLIPPI);
   core->Get("SerialPort1", (int*)&m_EXIDevice[2], ExpansionInterface::EXIDEVICE_NONE);
   core->Get("BBA_MAC", &m_bba_mac);
   core->Get("BBA_XLINK_IP", &m_bba_xlink_ip, "127.0.0.1");
@@ -614,6 +626,16 @@ void SConfig::LoadJitDebugSettings(IniFile& ini)
   section->Get("JitRegisterCacheOff", &bJITRegisterCacheOff, false);
 }
 
+void SConfig::LoadSlippiSettings(IniFile& ini)
+{
+  IniFile::Section* interface = ini.GetOrCreateSection("Slippi");
+
+  interface->Get("ReplayPath", &m_strSlippiReplayDir, "");
+  interface->Get("SaveReplays", &m_slippiSaveReplays, true);
+  interface->Get("ReplaysMonthlySubfolder", &m_slippiReplayMonthFolders, false);
+  interface->Get("DelayFrames", &m_slippiOnlineDelay, 2);
+}
+
 void SConfig::ResetRunningGameMetadata()
 {
   SetRunningGameMetadata("00000000", "", 0, 0, DiscIO::Region::Unknown);
@@ -662,6 +684,15 @@ void SConfig::SetRunningGameMetadata(const std::string& game_id, const std::stri
   m_gametdb_id = gametdb_id;
   m_title_id = title_id;
   m_revision = revision;
+
+  if (m_game_id == "GALE01" || m_game_id == "GALJ01")
+  {
+    m_gameType = GAMETYPE_MELEE_NTSC;
+
+    /*if (pVolume->GetLongNames()[DiscIO::Language::LANGUAGE_ENGLISH].find("20XX") !=
+        std::string::npos)
+      m_gameType = GAMETYPE_MELEE_20XX;*/
+  }
 
   if (game_id.length() == 6)
   {
