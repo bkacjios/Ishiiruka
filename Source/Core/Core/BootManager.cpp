@@ -384,6 +384,38 @@ bool BootCore(std::unique_ptr<BootParameters> boot, const WindowSystemInfo& wsi)
     StartUp.m_bt_passthrough_enabled = false;
     if (netplay_settings.m_HostInputAuthority && !netplay_settings.m_IsHosting)
       config_cache.bSetEmulationSpeed = true;
+    
+		// When this is true, will always use Slippi locally. Otherwise it'll use whatever is configured
+    // This makes it possible for one person to use Slippi and the other to not, hoping this is fine
+    bool isSlippiInPortB =
+        SConfig::GetInstance().m_EXIDevice[1] == ExpansionInterface::TEXIDevices::EXIDEVICE_SLIPPI;
+    bool isNoneInPortB =
+        SConfig::GetInstance().m_EXIDevice[1] == ExpansionInterface::TEXIDevices::EXIDEVICE_NONE;
+
+    bool oppSlippiInPortB =
+        netplay_settings.m_EXIDevice[1] == ExpansionInterface::TEXIDevices::EXIDEVICE_SLIPPI;
+    bool oppNoneInPortB =
+        netplay_settings.m_EXIDevice[1] == ExpansionInterface::TEXIDevices::EXIDEVICE_NONE;
+
+    if (oppSlippiInPortB && isNoneInPortB)
+    {
+      SConfig::GetInstance().m_EXIDevice[1] = ExpansionInterface::TEXIDevices::EXIDEVICE_NONE;
+    }
+    else if (oppNoneInPortB && isSlippiInPortB)
+    {
+      SConfig::GetInstance().m_EXIDevice[1] = ExpansionInterface::TEXIDevices::EXIDEVICE_SLIPPI;
+    }
+    else
+    {
+      // This will just grab what opp is using
+      SConfig::GetInstance().m_EXIDevice[1] = netplay_settings.m_EXIDevice[1];
+    }
+
+    config_cache.bSetEXIDevice[0] = true;
+    config_cache.bSetEXIDevice[1] = true;
+
+    //StartUp.iLagReductionCode = netplay_settings.m_LagReduction;
+    StartUp.bMeleeForceWidescreen = netplay_settings.m_MeleeForceWidescreen;
   }
   else
   {

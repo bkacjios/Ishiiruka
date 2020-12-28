@@ -173,6 +173,9 @@ bool DeleteDirRecursively(const std::string& directory);
 // Returns the current directory
 std::string GetCurrentDir();
 
+// Gets the mod time of a file
+u64 GetFileModTime(const std::string& path);
+
 // Create directory and copy contents (optionally overwrites existing files)
 void CopyDir(const std::string& source_path, const std::string& dest_path,
              bool destructive = false);
@@ -224,5 +227,11 @@ void OpenFStream(T& fstream, const std::string& filename, std::ios_base::openmod
   fstream.open(filename.c_str(), openmode);
 #endif
 }
+
+std::string GetSlippiUserJSONPath();
+
+std::string ConvertStringForGame(const std::string& input, int length);
+
+std::string GetHomeDirectory();
 
 }  // namespace File

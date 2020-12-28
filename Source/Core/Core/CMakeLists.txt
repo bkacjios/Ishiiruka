@@ -567,8 +567,13 @@ PUBLIC
   ${MBEDTLS_LIBRARIES}
   pugixml
   RangeSet::RangeSet
+  semver
   sfml-network
   sfml-system
+  SlippiLib
+  vcdcom
+  vcddec
+  vcdenc
   videonull
   videoogl
   videosoftware

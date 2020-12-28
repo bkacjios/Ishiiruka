@@ -18,7 +18,7 @@ namespace Common
 #define BUILD_TYPE_STR ""
 #endif
 
-const std::string scm_rev_str = "Dolphin "
+/*const std::string scm_rev_str = "Dolphin "
 #if !SCM_IS_MASTER
                                 "[" SCM_BRANCH_STR "] "
 #endif
@@ -27,18 +27,34 @@ const std::string scm_rev_str = "Dolphin "
     BUILD_TYPE_STR SCM_DESC_STR "-ICC";
 #else
     BUILD_TYPE_STR SCM_DESC_STR;
-#endif
+#endif*/
 
 const std::string scm_rev_git_str = SCM_REV_STR;
 const std::string scm_desc_str = SCM_DESC_STR;
 const std::string scm_branch_str = SCM_BRANCH_STR;
 const std::string scm_distributor_str = SCM_DISTRIBUTOR_STR;
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 const std::string netplay_dolphin_ver = SCM_DESC_STR " Win";
 #elif __APPLE__
 const std::string netplay_dolphin_ver = SCM_DESC_STR " Mac";
 #else
 const std::string netplay_dolphin_ver = SCM_DESC_STR " Lin";
+#endif*/
+
+#define SLIPPI_REV_STR "2.3.0-dev.1"
+#ifdef IS_PLAYBACK
+const std::string scm_rev_str = "Faster Melee - Slippi (" SLIPPI_REV_STR ") - Playback";
+#else
+const std::string scm_rev_str = "Faster Melee - Slippi (" SLIPPI_REV_STR ")";
+#endif
+const std::string scm_slippi_semver_str = SLIPPI_REV_STR;
+
+#ifdef _WIN32
+const std::string netplay_dolphin_ver = "Slippi-" SLIPPI_REV_STR " Win";
+#elif __APPLE__
+const std::string netplay_dolphin_ver = "Slippi-" SLIPPI_REV_STR " Mac";
+#else
+const std::string netplay_dolphin_ver = "Slippi-" SLIPPI_REV_STR " Lin";
 #endif
 }  // namespace Common

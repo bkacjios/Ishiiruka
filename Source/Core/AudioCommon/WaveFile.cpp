@@ -15,6 +15,14 @@
 #include "Common/Swap.h"
 #include "Core/ConfigManager.h"
 
+#ifdef IS_PLAYBACK
+#include "Core/Slippi/SlippiReplayComm.h"
+#include "Core/Slippi/SlippiPlayback.h"
+
+extern std::unique_ptr<SlippiReplayComm> g_replayComm;
+extern std::unique_ptr<SlippiPlaybackStatus> g_playbackStatus;
+#endif
+
 constexpr size_t WaveFileWriter::BUFFER_SIZE;
 
 WaveFileWriter::WaveFileWriter()
@@ -117,6 +125,14 @@ void WaveFileWriter::Write4(const char* ptr)
 
 void WaveFileWriter::AddStereoSamplesBE(const short* sample_data, u32 count, int sample_rate)
 {
+#ifdef IS_PLAYBACK
+  if (!g_playbackStatus || !g_playbackStatus->inSlippiPlayback ||
+      (g_playbackStatus->isHardFFW || g_playbackStatus->isSoftFFW) ||
+      g_replayComm->current.startFrame >= g_playbackStatus->currentPlaybackFrame ||
+      g_replayComm->current.endFrame <= g_playbackStatus->currentPlaybackFrame)
+    return;
+#endif
+
   if (!file)
     ERROR_LOG_FMT(AUDIO, "WaveFileWriter - file not open.");
 

@@ -161,6 +161,8 @@ LogManager::LogManager()
   m_log[PROCESSORINTERFACE] = {"PI", "Processor Interface"};
   m_log[POWERPC] = {"PowerPC", "PowerPC IBM CPU"};
   m_log[SERIALINTERFACE] = {"SI", "Serial Interface"};
+  m_log[SLIPPI] = {"Slippi", "Slippi"};
+  m_log[SLIPPI_ONLINE] = {"Slippi Online", "Slippi Online"};
   m_log[SP1] = {"SP1", "Serial Port 1"};
   m_log[SYMBOLS] = {"SYMBOLS", "Symbols"};
   m_log[VIDEO] = {"Video", "Video Backend"};

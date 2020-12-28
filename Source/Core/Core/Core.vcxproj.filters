@@ -172,6 +172,9 @@
     <Filter Include="PowerPC\JitArm64">
       <UniqueIdentifier>{9e91e72c-e432-4e02-8e03-c45c2b6f6957}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Slippi">
+      <UniqueIdentifier>{769cb9eb-3bf3-47f5-8a47-51a977a6213f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BootManager.cpp" />
@@ -465,9 +468,6 @@
       <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
     </ClCompile>
     <ClCompile Include="HW\EXI\EXI_DeviceMic.cpp">
-      <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="HW\EXI\BBA-TAP\TAP_Win32.cpp">
       <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
     </ClCompile>
     <ClCompile Include="HW\Sram.cpp">
@@ -1000,11 +1000,43 @@
     <ClCompile Include="PowerPC\Jit64\RegCache\FPURegCache.cpp">
       <Filter>PowerPC\Jit64</Filter>
     </ClCompile>
-    <ClCompile Include="HW\EXI\BBA\XLINK_KAI_BBA.cpp">
-      <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface\BBA</Filter>
+    <ClCompile Include="Config\FreeLookSettings.cpp" />
+    <ClCompile Include="FreeLookConfig.cpp" />
+    <ClCompile Include="FreeLookManager.cpp" />
+    <ClCompile Include="HW\EXI\BBA\TAP_Win32.cpp" />
+    <ClCompile Include="HW\EXI\BBA\XLINK_KAI_BBA.cpp" />
+    <ClCompile Include="HW\EXI\EXI_DeviceSlippi.cpp">
+      <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
     </ClCompile>
-    <ClCompile Include="HW\EXI\BBA\TAP_Win32.cpp">
-      <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface\BBA</Filter>
+    <ClCompile Include="Slippi\SlippiMatchmaking.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiNetplay.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiPad.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiPlayback.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiReplayComm.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiSavestate.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiSpectate.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiTimer.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiUser.cpp">
+      <Filter>Slippi</Filter>
+    </ClCompile>
+    <ClCompile Include="Slippi\SlippiGameFileLoader.cpp">
+      <Filter>Slippi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1248,9 +1280,6 @@
       <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
     </ClInclude>
     <ClInclude Include="HW\EXI\EXI_DeviceMic.h">
-      <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="HW\EXI\BBA-TAP\TAP_Win32.h">
       <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
     </ClInclude>
     <ClInclude Include="HW\Sram.h">
@@ -1763,11 +1792,45 @@
     <ClInclude Include="PowerPC\JitArmCommon\BackPatch.h">
       <Filter>PowerPC\JitArmCommon</Filter>
     </ClInclude>
-    <ClInclude Include="HW\EXI\BBA\TAP_Win32.h">
-      <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface\BBA</Filter>
-    </ClInclude>
     <ClInclude Include="SyncIdentifier.h" />
     <ClInclude Include="CheatCodes.h" />
+    <ClInclude Include="Config\FreeLookSettings.h" />
+    <ClInclude Include="FreeLookConfig.h" />
+    <ClInclude Include="FreeLookManager.h" />
+    <ClInclude Include="HW\EXI\BBA\TAP_Win32.h" />
+    <ClInclude Include="HW\EXI\EXI_DeviceSlippi.h">
+      <Filter>HW %28Flipper/Hollywood%29\EXI - Expansion Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiMatchmaking.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiNetplay.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiPad.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiPlayback.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiReplayComm.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiSavestate.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiSpectate.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiTimer.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiUser.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
+    <ClInclude Include="Slippi\SlippiGameFileLoader.h">
+      <Filter>Slippi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

@@ -67,7 +67,7 @@ namespace NetPlay
 using namespace WiimoteCommon;
 
 static std::mutex crit_netplay_client;
-static NetPlayClient* netplay_client = nullptr;
+NetPlayClient* netplay_client = nullptr;
 static std::unique_ptr<IOS::HLE::FS::FileSystem> s_wii_sync_fs;
 static std::vector<u64> s_wii_sync_titles;
 static bool s_si_poll_batching;

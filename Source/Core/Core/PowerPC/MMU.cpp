@@ -427,7 +427,7 @@ u32 HostRead_Instruction(const u32 address)
 
 static void Memcheck(u32 address, u32 var, bool write, size_t size)
 {
-  if (PowerPC::memchecks.HasAny())
+  /*if (PowerPC::memchecks.HasAny())
   {
     TMemCheck* mc = PowerPC::memchecks.GetMemCheck(address, size);
     if (mc)
@@ -452,7 +452,7 @@ static void Memcheck(u32 address, u32 var, bool write, size_t size)
         PowerPC::ppcState.Exceptions |= EXCEPTION_DSI | EXCEPTION_FAKE_MEMCHECK_HIT;
       }
     }
-  }
+  }*/
 }
 
 u8 Read_U8(const u32 address)

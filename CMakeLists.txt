@@ -544,7 +544,17 @@ else()
   add_subdirectory(Externals/fmt EXCLUDE_FROM_ALL)
 endif()
 add_subdirectory(Externals/imgui)
-add_subdirectory(Externals/glslang)
+add_subdirectory(Externals/
+
+include_directories(Externals/base64)
+add_subdirectory(Externals/SlippiLib)
+include_directories(Externals/SlippiLib)
+include_directories(Externals/nlohmann)
+add_subdirectory(Externals/semver)
+include_directories(Externals/semver/include)
+
+add_subdirectory(Externals/open-vcdiff)
+include_directories(Externals/open-vcdiff)
 
 if(ENABLE_VULKAN)
   add_definitions(-DHAS_VULKAN)

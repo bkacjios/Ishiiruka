@@ -87,6 +87,9 @@ struct NetSettings
   // These aren't sent over the network directly
   bool m_IsHosting;
   bool m_HostInputAuthority;
+
+  //MeleeLagReductionCode m_LagReduction;
+  bool m_MeleeForceWidescreen;
 };
 
 struct NetTraversalConfig
@@ -130,6 +133,12 @@ enum
 
   NP_MSG_WIIMOTE_DATA = 0x70,
   NP_MSG_WIIMOTE_MAPPING = 0x71,
+
+  NP_MSG_SLIPPI_PAD = 0x80,
+  NP_MSG_SLIPPI_PAD_ACK = 0x81,
+  NP_MSG_SLIPPI_MATCH_SELECTIONS = 0x82,
+  NP_MSG_SLIPPI_CONN_SELECTED = 0x83,
+  NP_MSG_SLIPPI_CHAT_MESSAGE = 0x84,
 
   NP_MSG_GOLF_REQUEST = 0x90,
   NP_MSG_GOLF_SWITCH = 0x91,

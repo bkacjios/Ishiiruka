@@ -33,6 +33,14 @@ extern "C" {
 #include "VideoCommon/OnScreenDisplay.h"
 #include "VideoCommon/VideoConfig.h"
 
+#ifdef IS_PLAYBACK
+#include "Core/Slippi/SlippiPlayback.h"
+#include "Core/Slippi/SlippiReplayComm.h"
+
+extern std::unique_ptr<SlippiReplayComm> g_replayComm;
+extern std::unique_ptr<SlippiPlaybackStatus> g_playbackStatus;
+#endif
+
 struct FrameDumpContext
 {
   AVFormatContext* format = nullptr;
@@ -113,6 +121,13 @@ std::string GetDumpPath(const std::string& extension, std::time_t time, u32 inde
 
 bool FrameDump::Start(int w, int h, u64 start_ticks)
 {
+#ifdef IS_PLAYBACK
+  if (!g_playbackStatus || !g_playbackStatus->inSlippiPlayback ||
+      (g_playbackStatus->isHardFFW || g_playbackStatus->isSoftFFW) ||
+      g_replayComm->current.startFrame >= g_playbackStatus->currentPlaybackFrame ||
+      g_replayComm->current.endFrame <= g_playbackStatus->currentPlaybackFrame)
+    return false;
+#endif
   if (IsStarted())
     return true;
 
@@ -272,6 +287,13 @@ bool FrameDump::IsFirstFrameInCurrentFile() const
 
 void FrameDump::AddFrame(const FrameData& frame)
 {
+#ifdef IS_PLAYBACK
+  if (!g_playbackStatus || !g_playbackStatus->inSlippiPlayback ||
+      (g_playbackStatus->isHardFFW || g_playbackStatus->isSoftFFW) ||
+      g_replayComm->current.startFrame >= g_playbackStatus->currentPlaybackFrame ||
+      g_replayComm->current.endFrame <= g_playbackStatus->currentPlaybackFrame)
+    return;
+#endif
   // Are we even dumping?
   if (!IsStarted())
     return;

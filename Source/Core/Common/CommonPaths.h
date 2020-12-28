@@ -89,6 +89,9 @@
 #define DUALSHOCKUDPCLIENT_CONFIG "DSUClient.ini"
 #define FREELOOK_CONFIG "FreeLook.ini"
 
+// Slippi files
+#define SLIPPI_USER_JSON "user.json"
+
 // Files in the directory returned by GetUserPath(D_LOGS_IDX)
 #define MAIN_LOG "dolphin.log"
 

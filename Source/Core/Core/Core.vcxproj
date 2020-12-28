@@ -4,6 +4,7 @@
   <Import Project="$(VSPropsDir)Base.Targets.props" />
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E54CF649-140E-4255-81A5-30A673C1FB36}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VSPropsDir)Configuration.StaticLibrary.props" />
@@ -15,6 +16,28 @@
     <Import Project="$(VSPropsDir)PCHUse.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ExternalsDir);$(ExternalsDir)nlohmann;$(ExternalsDir)SlippiLib;$(ExternalsDir)semver\include;$(ExternalsDir)zstd\lib;$(ExternalsDir)base64;$(ExternalsDir)open-vcdiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>open-vcdiff.lib;semver.lib;SlippiLib.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>F:\Desktop\dolphin\Source\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ExternalsDir);$(ExternalsDir)nlohmann;$(ExternalsDir)SlippiLib;$(ExternalsDir)semver\include;$(ExternalsDir)zstd\lib;$(ExternalsDir)base64;$(ExternalsDir)open-vcdiff;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>open-vcdiff.lib;semver.lib;SlippiLib.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>F:\Desktop\dolphin\Source\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionReplay.cpp" />
     <ClCompile Include="Analytics.cpp" />
@@ -129,6 +152,7 @@
     <ClCompile Include="HW\EXI\EXI_DeviceIPL.cpp" />
     <ClCompile Include="HW\EXI\EXI_DeviceMemoryCard.cpp" />
     <ClCompile Include="HW\EXI\EXI_DeviceMic.cpp" />
+    <ClCompile Include="HW\EXI\EXI_DeviceSlippi.cpp" />
     <ClCompile Include="HW\GCKeyboard.cpp" />
     <ClCompile Include="HW\GCKeyboardEmu.cpp" />
     <ClCompile Include="HW\GCMemcard\GCIFile.cpp" />
@@ -372,6 +396,16 @@
     <ClCompile Include="PowerPC\SignatureDB\DSYSignatureDB.cpp" />
     <ClCompile Include="PowerPC\SignatureDB\MEGASignatureDB.cpp" />
     <ClCompile Include="PowerPC\SignatureDB\SignatureDB.cpp" />
+    <ClCompile Include="Slippi\SlippiGameFileLoader.cpp" />
+    <ClCompile Include="Slippi\SlippiMatchmaking.cpp" />
+    <ClCompile Include="Slippi\SlippiNetplay.cpp" />
+    <ClCompile Include="Slippi\SlippiPad.cpp" />
+    <ClCompile Include="Slippi\SlippiPlayback.cpp" />
+    <ClCompile Include="Slippi\SlippiReplayComm.cpp" />
+    <ClCompile Include="Slippi\SlippiSavestate.cpp" />
+    <ClCompile Include="Slippi\SlippiSpectate.cpp" />
+    <ClCompile Include="Slippi\SlippiTimer.cpp" />
+    <ClCompile Include="Slippi\SlippiUser.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="SysConf.cpp" />
     <ClCompile Include="System.cpp" />
@@ -486,6 +520,7 @@
     <ClInclude Include="HW\EXI\EXI_DeviceIPL.h" />
     <ClInclude Include="HW\EXI\EXI_DeviceMemoryCard.h" />
     <ClInclude Include="HW\EXI\EXI_DeviceMic.h" />
+    <ClInclude Include="HW\EXI\EXI_DeviceSlippi.h" />
     <ClInclude Include="HW\GCKeyboard.h" />
     <ClInclude Include="HW\GCKeyboardEmu.h" />
     <ClInclude Include="HW\GCMemcard\GCIFile.h" />
@@ -682,6 +717,16 @@
     <ClInclude Include="PowerPC\PPCSymbolDB.h" />
     <ClInclude Include="PowerPC\PPCTables.h" />
     <ClInclude Include="PowerPC\Profiler.h" />
+    <ClInclude Include="Slippi\SlippiGameFileLoader.h" />
+    <ClInclude Include="Slippi\SlippiMatchmaking.h" />
+    <ClInclude Include="Slippi\SlippiNetplay.h" />
+    <ClInclude Include="Slippi\SlippiPad.h" />
+    <ClInclude Include="Slippi\SlippiPlayback.h" />
+    <ClInclude Include="Slippi\SlippiReplayComm.h" />
+    <ClInclude Include="Slippi\SlippiSavestate.h" />
+    <ClInclude Include="Slippi\SlippiSpectate.h" />
+    <ClInclude Include="Slippi\SlippiTimer.h" />
+    <ClInclude Include="Slippi\SlippiUser.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="SyncIdentifier.h" />
     <ClInclude Include="SysConf.h" />

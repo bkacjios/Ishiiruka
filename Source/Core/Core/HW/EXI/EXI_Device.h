@@ -35,6 +35,7 @@ enum TEXIDevices : int
   EXIDEVICE_ETHXLINK,
   // Only used on Apple devices.
   EXIDEVICE_ETHTAPSERVER,
+  EXIDEVICE_SLIPPI,
   EXIDEVICE_NONE = 0xFF
 };
 

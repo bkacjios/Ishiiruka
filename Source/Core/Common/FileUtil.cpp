@@ -25,6 +25,7 @@
 #include "Common/Logging/Log.h"
 
 #ifdef _WIN32
+#include <ShlObj.h>
 #include <windows.h>
 #include <Shlwapi.h>
 #include <commdlg.h>  // for GetSaveFileName
@@ -588,6 +589,27 @@ bool DeleteDirRecursively(const std::string& directory)
   return success;
 }
 
+u64 GetFileModTime(const std::string& filename)
+{
+  struct stat file_info;
+
+  std::string copy(filename);
+  //StripTailDirSlashes(copy);
+
+#ifdef _WIN32
+  int result = _tstat64(UTF8ToTStr(copy).c_str(), &file_info);
+#else
+  int result = stat(copy.c_str(), &file_info);
+#endif
+
+  if (result < 0)
+  {
+    return 0;
+  }
+
+  return file_info.st_mtime;
+}
+
 // Create directory and copy contents (does not overwrite existing files)
 void CopyDir(const std::string& source_path, const std::string& dest_path, bool destructive)
 {
@@ -977,6 +999,42 @@ bool ReadFileToString(const std::string& filename, std::string& str)
 
   str.resize(file.GetSize());
   return file.ReadArray(str.data(), str.size());
+}
+
+std::string GetSlippiUserJSONPath()
+{
+#if defined(__APPLE__)
+  std::string userFilePath =
+      File::GetBundleDirectory() + "/Contents/Resources" + DIR_SEP + "user.json";
+#elif defined(_WIN32)
+  std::string userFilePath = File::GetExeDirectory() + DIR_SEP + "user.json";
+#else
+  std::string userFilePath = File::GetUserPath(F_USERJSON_IDX);
+#endif
+  return userFilePath;
+}
+
+std::string GetHomeDirectory()
+{
+  std::string homeDir;
+#ifdef _WIN32
+  wchar_t* path = nullptr;
+
+  if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_Documents, 0, nullptr, &path)))
+  {
+    homeDir = UTF16ToUTF8(path);
+  }
+  else
+  {
+    const char* home = getenv("USERPROFILE");
+    homeDir = std::string(home) + "\\Documents";
+  }
+#else
+  const char* home = getenv("HOME");
+  homeDir = std::string(home);
+#endif
+
+  return homeDir;
 }
 
 }  // namespace File

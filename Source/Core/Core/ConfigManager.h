@@ -65,6 +65,13 @@ enum class GPUDeterminismMode
   FakeCompletion,
 };
 
+enum MeleeLagReductionCode
+{
+  MELEE_LAG_REDUCTION_CODE_UNSET = 0,
+  MELEE_LAG_REDUCTION_CODE_NORMAL = 1,
+  MELEE_LAG_REDUCTION_CODE_PERFORMANCE = 2
+};
+
 struct SConfig
 {
   // Wii Devices
@@ -120,6 +127,25 @@ struct SConfig
   bool bEnableCheats = false;
   bool bEnableMemcardSdWriting = true;
   bool bCopyWiiSaveNetplay = true;
+
+	bool bQoSEnabled = true;
+  bool bAdapterWarning = true;
+
+  MeleeLagReductionCode iLagReductionCode = MELEE_LAG_REDUCTION_CODE_UNSET;
+  bool bHasShownLagReductionWarning = false;
+  bool bMeleeForceWidescreen = false;
+
+	// enable Slippi Networking output
+  bool m_enableSpectator;
+  int m_spectator_local_port;
+
+  bool m_InterfaceSeekbar;
+  bool m_slippiSaveReplays = true;
+  bool m_slippiReplayMonthFolders = false;
+  std::string m_strSlippiReplayDir;
+  bool m_meleeUserIniBootstrapped = false;
+  bool m_blockingPipes = false;
+  bool m_coutEnabled = false;
 
   bool bDPL2Decoder = false;
   int iLatency = 20;
