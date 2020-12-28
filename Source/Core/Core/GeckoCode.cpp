@@ -162,8 +162,8 @@ static Installation InstallCodeHandlerLocked()
     // Move Gecko code handler to the tournament mode region
     codelist_base_address = 0x801910E0;
     codelist_end_address = 0x8019AF4C;
-    PowerPC::HostWrite_U32(0x3DE08019, 0x80001f58);
-    PowerPC::HostWrite_U32(0x61EF10E0, 0x80001f5C);
+    PowerPC::HostWrite_U32(0x3DE08019, 0x80001904);
+    PowerPC::HostWrite_U32(0x61EF10E0, 0x80001908);
 
     // Here we are replacing a line in the codehandler with a blr.
     // The reason for this is that this is the section of the codehandler
