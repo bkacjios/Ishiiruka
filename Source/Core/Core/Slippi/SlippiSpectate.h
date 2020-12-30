@@ -6,7 +6,7 @@
 #include <thread>
 
 #include "Common/SPSCQueue.h"
-#include "nlohmann/json.hpp"
+#include "json.hpp"
 #include <enet/enet.h>
 using json = nlohmann::json;
 

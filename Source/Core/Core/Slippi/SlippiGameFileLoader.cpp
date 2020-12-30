@@ -3,7 +3,7 @@
 #include "Common/Logging/Log.h"
 
 #include "Common/FileUtil.h"
-#include "Core/HW/DVD/FileMonitor.h"
+#include "Core/HW/DVD/DVDThread.h"
 
 std::string getFilePath(std::string fileName)
 {
@@ -48,12 +48,12 @@ u32 SlippiGameFileLoader::LoadFile(std::string fileName, std::string &data)
 	if (gameFilePath.substr(gameFilePath.length() - 5) == ".diff")
 	{
 		// If the file was a diff file, load the main file from ISO and apply patch
-		std::string buf;
-    INFO_LOG(SLIPPI, "Will process diff");
-    File::ReadFileToString(fileName, buf);
+		std::vector<u8> buf;
+		INFO_LOG(SLIPPI, "Will process diff");
+		DVDThread::ReadFile(fileName, buf);
 		std::string diffContents = fileContents;
 
-		decoder.Decode(buf.data(), buf.size(), diffContents, &fileContents);
+		decoder.Decode((char*)buf.data(), buf.size(), diffContents, &fileContents);
 	}
 
 	fileCache[fileName] = fileContents;
