@@ -196,10 +196,6 @@ class SlippiNetplayClient
 
 	bool m_is_connected = false;
 
-#ifdef _WIN32
-	HANDLE m_qos_handle;
-#endif
-
 	u32 m_timebase_frame = 0;
 };
 extern SlippiNetplayClient* SLIPPI_NETPLAY; // singleton static pointer

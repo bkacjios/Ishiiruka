@@ -172,9 +172,9 @@ const Info<bool> MAIN_ANALYTICS_PERMISSION_ASKED{{System::Main, "Analytics", "Pe
                                                  false};
 
 // Main.Slippi
-const Info<std::string> MAIN_SLIPPI_REPLAYS_PATH{{System::Main, "Slippi", "ReplayPath"}, ""};
+const Info<std::string> MAIN_SLIPPI_REPLAYS_PATH{{System::Main, "Slippi", "ReplayDir"}, ""};
 const Info<bool> MAIN_SLIPPI_SAVE_REPLAYS{{System::Main, "Slippi", "SaveReplays"}, true};
-const Info<bool> MAIN_SLIPPI_REPLAYS_MONTLY_SUBFOLDERS{{System::Main, "Slippi", "ReplaysMonthlySubfolder"}, false};
-const Info<int> MAIN_SLIPPI_DELAY_FRAMES{{System::Main, "Slippi", "DelayFrames"}, 2};
+const Info<bool> MAIN_SLIPPI_REPLAYS_MONTLY_SUBFOLDERS{{System::Main, "Slippi", "ReplayMonthFolders"}, false};
+const Info<int> MAIN_SLIPPI_DELAY_FRAMES{{System::Main, "Slippi", "OnlineDelay"}, 2};
 
 }  // namespace Config

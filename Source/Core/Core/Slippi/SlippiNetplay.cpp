@@ -125,6 +125,13 @@ SlippiNetplayClient::SlippiNetplayClient(bool isDecider)
 	this->isDecider = isDecider;
 	SLIPPI_NETPLAY = std::move(this);
 	slippiConnectStatus = SlippiConnectStatus::NET_CONNECT_STATUS_FAILED;
+
+  this->pingUs = 0;
+  this->lastFrameAcked = 0;
+  FrameTiming timing;
+  timing.frame = 0;
+  timing.timeUs = Common::Timer::GetTimeUs();
+  this->lastFrameTiming = timing;
 }
 
 // called from ---NETPLAY--- thread
@@ -401,11 +408,11 @@ void SlippiNetplayClient::ThreadFunc()
 
     if (qos_session.Successful())
     {
-      PanicAlertT("Quality of Service (QoS) was successfully enabled.");
+      INFO_LOG(SLIPPI_ONLINE, "Quality of Service (QoS) was successfully enabled.");
     }
     else
     {
-      PanicAlertT("Quality of Service (QoS) couldn't be enabled.");
+      INFO_LOG(SLIPPI_ONLINE, "Quality of Service (QoS) couldn't be enabled.");
     }
   }
 

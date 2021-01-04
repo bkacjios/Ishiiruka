@@ -224,10 +224,6 @@ static Installation InstallCodeHandlerLocked()
   {
     PowerPC::ppcState.iCache.Invalidate(INSTALLER_BASE_ADDRESS + j);
   }
-  for (unsigned int k = codelist_base_address; k < codelist_end_address; k += 32)
-  {
-    PowerPC::ppcState.iCache.Invalidate(k);
-  }
   return Installation::Installed;
 }
 

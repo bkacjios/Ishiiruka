@@ -345,10 +345,10 @@ void SConfig::SaveSlippiSettings(IniFile& ini)
 {
   IniFile::Section* section = ini.GetOrCreateSection("Slippi");
 
-  section->Set("ReplayPath", m_strSlippiReplayDir);
+  section->Set("ReplayDir", m_strSlippiReplayDir);
   section->Set("SaveReplays", m_slippiSaveReplays);
-  section->Set("ReplaysMonthlySubfolder", m_slippiReplayMonthFolders);
-  section->Set("DelayFrames", m_slippiOnlineDelay);
+  section->Set("ReplayMonthFolders", m_slippiReplayMonthFolders);
+  section->Set("OnlineDelay", m_slippiOnlineDelay);
 }
 
 void SConfig::LoadSettings()
@@ -630,10 +630,10 @@ void SConfig::LoadSlippiSettings(IniFile& ini)
 {
   IniFile::Section* interface = ini.GetOrCreateSection("Slippi");
 
-  interface->Get("ReplayPath", &m_strSlippiReplayDir, "");
+  interface->Get("ReplayDir", &m_strSlippiReplayDir, "");
   interface->Get("SaveReplays", &m_slippiSaveReplays, true);
-  interface->Get("ReplaysMonthlySubfolder", &m_slippiReplayMonthFolders, false);
-  interface->Get("DelayFrames", &m_slippiOnlineDelay, 2);
+  interface->Get("ReplayMonthFolders", &m_slippiReplayMonthFolders, false);
+  interface->Get("OnlineDelay", &m_slippiOnlineDelay, 2);
 }
 
 void SConfig::ResetRunningGameMetadata()

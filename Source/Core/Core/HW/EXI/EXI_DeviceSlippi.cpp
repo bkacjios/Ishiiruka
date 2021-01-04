@@ -571,7 +571,7 @@ void CEXISlippi::createNewFile()
 
 	// Now we have a dir such as /home/Replays but we need to make one such
 	// as /home/Replays/2020-06 if month categorization is enabled
-	/*if (SConfig::GetInstance().m_slippiReplayMonthFolders)
+	if (SConfig::GetInstance().m_slippiReplayMonthFolders)
 	{
 		dirpath.push_back('/');
 
@@ -585,7 +585,7 @@ void CEXISlippi::createNewFile()
 
 		// Ensure that the subfolder directory is created
 		File::CreateDir(dirpath);
-	}*/
+	}
 
 	std::string filepath = dirpath + DIR_SEP + generateFileName();
 	INFO_LOG(SLIPPI, "EXI_DeviceSlippi.cpp: Creating new replay file %s", filepath.c_str());

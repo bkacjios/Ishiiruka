@@ -225,6 +225,8 @@ add_library(core
   HW/EXI/EXI_DeviceMemoryCard.h
   HW/EXI/EXI_DeviceMic.cpp
   HW/EXI/EXI_DeviceMic.h
+  HW/EXI/EXI_DeviceSlippi.cpp
+  HW/EXI/EXI_DeviceSlippi.h
   HW/GCKeyboard.cpp
   HW/GCKeyboard.h
   HW/GCKeyboardEmu.cpp
@@ -477,6 +479,26 @@ add_library(core
   PowerPC/Interpreter/Interpreter_Paired.cpp
   PowerPC/Interpreter/Interpreter_SystemRegisters.cpp
   PowerPC/Interpreter/Interpreter_Tables.cpp
+  Slippi/SlippiGameFileLoader.cpp
+  Slippi/SlippiGameFileLoader.h
+  Slippi/SlippiMatchmaking.cpp
+  Slippi/SlippiMatchmaking.h
+  Slippi/SlippiNetplay.cpp
+  Slippi/SlippiNetplay.h
+  Slippi/SlippiPad.cpp
+  Slippi/SlippiPad.h
+  Slippi/SlippiPlayback.cpp
+  Slippi/SlippiPlayback.h
+  Slippi/SlippiReplayComm.cpp
+  Slippi/SlippiReplayComm.h
+  Slippi/SlippiSavestate.cpp
+  Slippi/SlippiSavestate.h
+  Slippi/SlippiSpectate.cpp
+  Slippi/SlippiSpectate.h
+  Slippi/SlippiTimer.cpp
+  Slippi/SlippiTimer.h
+  Slippi/SlippiUser.cpp
+  Slippi/SlippiUser.h
 )
 
 if(_M_X86)
