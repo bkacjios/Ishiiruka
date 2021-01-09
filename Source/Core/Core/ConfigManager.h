@@ -136,6 +136,10 @@ struct SConfig : NonCopyable
 	bool bHasShownLagReductionWarning = false;
 	bool bMeleeForceWidescreen = false;
 
+	int m_slippiItemFrequency = 0;
+	u32 m_slippiItemSelection1 = 0;
+	u32 m_slippiItemSelection2 = 0;
+
 	bool m_slippiSaveReplays = true;
 	bool m_slippiReplayMonthFolders = false;
 	std::string m_strSlippiReplayDir;

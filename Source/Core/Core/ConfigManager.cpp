@@ -279,6 +279,9 @@ void SConfig::SaveCoreSettings(IniFile& ini)
 	core->Set("RSHACK", bRSHACK);
 	core->Set("Latency", iLatency);
 	core->Set("SlippiOnlineDelay", m_slippiOnlineDelay);
+	core->Set("SlippiItemFrequency", m_slippiItemFrequency);
+	core->Set("SlippiItemSelection1", m_slippiItemSelection1);
+	core->Set("SlippiItemSelection2", m_slippiItemSelection2);
 	core->Set("SlippiEnableSpectator", m_enableSpectator);
 	core->Set("SlippiSpectatorLocalPort", m_spectator_local_port);
 	core->Set("SlippiSaveReplays", m_slippiSaveReplays);
@@ -610,6 +613,9 @@ void SConfig::LoadCoreSettings(IniFile& ini)
 	core->Get("TimeStretching", &bTimeStretching, false);
 	core->Get("RSHACK", &bRSHACK, false);
 	core->Get("Latency", &iLatency, 0);
+	core->Get("SlippiItemFrequency", &m_slippiItemFrequency, -1);
+	core->Get("SlippiItemSelection1", &m_slippiItemSelection1, 0);
+	core->Get("SlippiItemSelection2", &m_slippiItemSelection2, 0);
 	core->Get("SlippiEnableSpectator", &m_enableSpectator, true);
 	core->Get("SlippiSpectatorLocalPort", &m_spectator_local_port, 51441);
 	core->Get("SlippiOnlineDelay", &m_slippiOnlineDelay, 2);

@@ -134,6 +134,8 @@ class SlippiNetplayClient
 	u8 remoteChatMessageId = 0;     // most recent chat message id from opponent
 	u8 remoteSentChatMessageId = 0; // most recent chat message id that current player sent
 
+	u8 currentMatchDelay = 2; // The amount of delay frames currently being used
+
   protected:
 	struct
 	{
